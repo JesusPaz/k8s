@@ -9,6 +9,7 @@ kubectl get all
 kubectl cluster-info
 kubectl get nodes
 kubectl get nodes -o wide
+kubectl describe node ${node_name}
 kubectl get pods --all-namespaces  
 kubectl config view
 kubectl get pods --show-labels
@@ -63,5 +64,8 @@ kubectl -n testing autoscale deployment.v2.apps/hello-deployment --min=2 --max=5
 
 ## Info
 
- * NodePort: create a port in every node, you need to use the ip of the node and the port
- * Services: Refers to a set of pods, send traffic based in a policy (labels)
+ * NodePort: create a port in every node, you need to use the ip of the node and the port.
+ * Services: Refers to a set of pods, send traffic based in a policy (labels).
+ * Liveness Probe: It's to let Kubernetes know if your pod is alive.
+ * Readiness Probe: It's to let Kubernetes know if your pod is ready to receive traffic.
+ * HPA: Horizontal Pod Autoscaler.
