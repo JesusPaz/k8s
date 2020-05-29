@@ -5,9 +5,11 @@ commands
 
 ## Check info
 ```
+kubectl get all
 kubectl cluster-info
 kubectl get nodes
 kubectl get nodes -o wide
+kubectl get pods --all-namespaces  
 kubectl config view
 ```
 ## Namespaces
@@ -19,23 +21,39 @@ kubectl get ns
 
 ### Node Port
 ```
-kubectl -n testing apply -f ./services/01-wordpress-node-port.yaml
+kubectl -n testing apply -f ./services/01-wordpress-service-np.yaml
 kubectl -n testing get svc
 ```
 ### Load Balancer
 ```
 kubectl -n testing delete svc ${SVC_NAME}
 kubectl -n testing apply -f ./services/03-wordpress-service-lb.yaml
+kubectl -n testing apply -f ./services/05-hello-app-service-lb.yaml
 kubectl -n testing get svc
 ```
 
 
-## Replication Controller
+## Controllers
+
+### Replication Controller
 ```
 kubectl -n testing apply -f ./controllers/02-wordpress-rc.yaml
 kubectl -n testing get pods
 kubectl -n testing delete pod ${POD_NAME}
 ```
+
+### Deployments
+```
+kubectl -n testing get deployments
+kubectl -n testing get rs
+kubectl -n testing apply -f ./controllers/04-hello-app-deployment.yaml
+kubectl -n testing get pods
+kubectl -n testing describe deployment deployment.v1.apps/hello-deployment
+kubectl -n testing scale --replicas=5 deployment.v1.apps/hello-deployment
+kubectl -n testing delete pod ${POD_NAME}
+```
+
+
 
 ## Info
 
