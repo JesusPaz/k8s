@@ -1,7 +1,7 @@
 # k8s
 K8s practice
 
-commands
+# Kubectl Commands
 
 ## Check info
 ```
@@ -11,6 +11,11 @@ kubectl get nodes
 kubectl get nodes -o wide
 kubectl get pods --all-namespaces  
 kubectl config view
+kubectl get pods --show-labels
+kubectl describe pods
+kubectl logs ${POD_NAME}
+kubectl delete all --all -n ${namespace}
+kubectl exec -it ${podname} sh
 ```
 ## Namespaces
 ```
@@ -51,34 +56,12 @@ kubectl -n testing get pods
 kubectl -n testing describe deployment deployment.v1.apps/hello-deployment
 kubectl -n testing scale --replicas=5 deployment.v1.apps/hello-deployment
 kubectl -n testing delete pod ${POD_NAME}
+kubectl -n testing autoscale deployment.v2.apps/hello-deployment --min=2 --max=5 --cpu-percent=80
 ```
 
 
 
 ## Info
 
-NodePort: create a port in every node, you need to use the ip of the node and the port
-Services: Refers to a set of pods, send traffic based in a policy (labels)
-
-kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1
-
-kubectl get deployments
-
-kubectl get pods
-
-kubectl describe pods
-
-kubectl logs $POD_NAME
-
-kubectl exec $POD_NAME env
-
-kubectl exec -ti $POD_NAME bash
-
-
-### Deployment 
-
-kubectl apply -f controllers/nginx-deployment.yaml
-kubectl get deployments
-kubectl get pods --show-labels
-kubectl scale deployment.v1.apps/nginx-deployment --replicas=10
-kubectl autoscale deployment.v1.apps/nginx-deployment --min=10 --max=15 --cpu-percent=80
+ * NodePort: create a port in every node, you need to use the ip of the node and the port
+ * Services: Refers to a set of pods, send traffic based in a policy (labels)
