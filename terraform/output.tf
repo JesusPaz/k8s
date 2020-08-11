@@ -1,7 +1,7 @@
-output "eks_cluster_endpoint" {
-  value = aws_eks_cluster.aws_eks.endpoint
+output "resource_group_name" {
+  value = azurerm_resource_group.default.name
 }
 
-output "eks_cluster_certificat_authority" {
-  value = aws_eks_cluster.aws_eks.certificate_authority 
+output "kubernetes_cluster_name" {
+  value = azurerm_kubernetes_cluster.default.name
 }
